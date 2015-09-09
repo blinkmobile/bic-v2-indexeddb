@@ -1,3 +1,4 @@
+/* eslint-disable no-var */ // no ES2015 here ?
 'use strict';
 
 // local modules

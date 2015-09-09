@@ -1,9 +1,7 @@
 {
-  "extends": ["@jokeyrhyme/es5"],
+  "extends": ["@jokeyrhyme/es2015"],
   "env": {
     "node": true
   },
-  "rules": {
-    "strict": [2, "global"]
-  }
+  "rules": {}
 }

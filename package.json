@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/blinkmobile/bic-v2-indexeddb#readme",
   "devDependencies": {
+    "@jokeyrhyme/eslint-config-es2015": "^1.0",
     "@jokeyrhyme/eslint-config-es5": "^1.0",
     "babel-core": "^5.8",
     "babel-loader": "^5.3",
