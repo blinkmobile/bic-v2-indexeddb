@@ -1,0 +1,5 @@
+# foreign files
+node_modules
+
+# temporary / output files
+dist
