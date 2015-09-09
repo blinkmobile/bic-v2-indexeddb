@@ -2,17 +2,22 @@
 
 // foreign modules
 
-var test = require('tape');
+const test = require('tape');
 
 // local modules
 
-var BMStorage = require('..');
+require('./lib/bic');
+
+const addon = require('..');
 
 // this modules
 
-global.console.log('hello, tests!');
+test('addon', (t) => {
+  t.ok(addon);
+  t.end();
+});
 
-test('BMStorage', function (t) {
-  t.ok(BMStorage);
+test('addon.BMStorageIDB', (t) => {
+  t.ok(addon.BMStorageIDB);
   t.end();
 });

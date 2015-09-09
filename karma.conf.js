@@ -11,9 +11,9 @@ module.exports = function (config) {
   config.set({
     basePath: '',
     frameworks: ['tap'],
-    files: ['tests/**/*.js'],
+    files: ['tests/*.js'],
     preprocessors: {
-      'tests/**/*.js': ['webpack']
+      'tests/*.js': ['webpack']
     },
     webpack: {
       node: {

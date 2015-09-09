@@ -1,5 +1,16 @@
 'use strict';
 
-global.console.log('hello, world!');
+// local modules
 
-module.exports = {};
+import BMStorageIDB from './lib/BMStorageIDB';
+
+// this module
+
+global.console.log('BMStorageIDB: starting...');
+
+global.console.log(`global.BlinkStorage: ${!!global.BlinkStorage}`);
+global.console.log(`global.MyAnswers: ${!!global.MyAnswers}`);
+
+module.exports = {
+  BMStorageIDB
+};
