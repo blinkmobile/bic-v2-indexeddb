@@ -44,7 +44,7 @@ module.exports = function (config) {
       dir: 'coverage/'
     },
     colors: true,
-    logLevel: config.LOG_INFO,
+    logLevel: config.LOG_ERROR,
     autoWatch: false,
     singleRun: true
   });

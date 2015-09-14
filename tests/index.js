@@ -11,6 +11,8 @@ require('./lib/bic');
 require('./deferredify');
 require('./promise-reliable');
 require('./promise-resolved');
+require('./BMStorage');
+require('./BMStorageIDB');
 
 import { default as addon } from '../';
 
