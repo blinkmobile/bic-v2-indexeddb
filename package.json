@@ -5,11 +5,13 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.conf.js",
+    "postbuild": "cat node_modules/localforage/dist/localforage.min.js dist/bmstorageidb.js > dist/bmstorageidb.localforage.js",
     "karma:chrome": "karma start --browsers Chrome",
     "karma:phantomjs": "karma start --browsers PhantomJS",
     "lint": "eslint .",
+    "pretest": "npm run build",
     "test": "npm run karma:phantomjs",
-    "posttest": "npm run lint && npm run build"
+    "posttest": "npm run lint"
   },
   "repository": {
     "type": "git",

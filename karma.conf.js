@@ -13,6 +13,7 @@ module.exports = function (config) {
     frameworks: ['tap'],
     files: [
       'node_modules/jquery/dist/jquery.js',
+      'node_modules/localforage/dist/localforage.js',
       'tests/*.js'
     ],
     preprocessors: {

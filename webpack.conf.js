@@ -12,7 +12,6 @@ var webpack = require('webpack');
 // this module
 
 module.exports = {
-  devtool: 'source-map',
   entry: path.join('.'),
   module: {
     loaders: [
@@ -20,12 +19,12 @@ module.exports = {
     ]
   },
   output: {
-    filename: 'index.js',
+    filename: 'bmstorageidb.js',
     libraryTarget: 'umd',
-    path: path.join(__dirname, 'dist'),
-    sourceMapFilename: '[file].map'
+    path: path.join(__dirname, 'dist')
   },
   plugins: [
+    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin()
   ]
 };
