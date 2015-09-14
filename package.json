@@ -6,6 +6,7 @@
   "scripts": {
     "build": "webpack --config webpack.conf.js",
     "postbuild": "cat node_modules/localforage/dist/localforage.min.js dist/bmstorageidb.js > dist/bmstorageidb.localforage.js",
+    "karma": "karma start --browsers Chrome,PhantomJS",
     "karma:chrome": "karma start --browsers Chrome",
     "karma:phantomjs": "karma start --browsers PhantomJS",
     "lint": "eslint .",
