@@ -14,10 +14,13 @@ module.exports = function (config) {
     files: [
       'node_modules/jquery/dist/jquery.js',
       'node_modules/localforage/dist/localforage.js',
-      'tests/*.js'
+      '**/*_test.js'
+    ],
+    exclude: [
+      'node_modules/**/*_test.js'
     ],
     preprocessors: {
-      'tests/*.js': ['webpack']
+      '**/*_test.js': ['webpack']
     },
     webpack: {
       node: {

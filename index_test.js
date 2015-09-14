@@ -6,9 +6,9 @@ const test = require('tape');
 
 // local modules
 
-require('./lib/bic');
+require('./tests/lib/bic');
 
-const addon = require('..');
+const addon = require('./');
 
 // this modules
 
