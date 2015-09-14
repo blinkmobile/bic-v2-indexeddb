@@ -7,13 +7,13 @@ import { default as test } from 'tape';
 // local modules
 
 import promiseResolved from '../lib/promise-resolved';
+import { isPromise, isNotDeferred } from './lib/assertions';
 
 // this modules
 
 test('promiseResolved', (t) => {
-  t.equal(typeof promiseResolved.always, 'function');
-  t.equal(typeof promiseResolved.fail, 'function');
-  t.equal(typeof promiseResolved.then, 'function');
+  isPromise(t, promiseResolved);
+  isNotDeferred(t, promiseResolved);
   t.end();
 });
 

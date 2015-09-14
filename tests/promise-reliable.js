@@ -7,13 +7,13 @@ import { default as test } from 'tape';
 // local modules
 
 import promiseReliable from '../lib/promise-reliable';
+import { isPromise, isNotDeferred } from './lib/assertions';
 
 // this modules
 
 test('promiseReliable', (t) => {
-  t.equal(typeof promiseReliable.always, 'function');
-  t.equal(typeof promiseReliable.fail, 'function');
-  t.equal(typeof promiseReliable.then, 'function');
+  isPromise(t, promiseReliable);
+  isNotDeferred(t, promiseReliable);
   t.end();
 });
 
