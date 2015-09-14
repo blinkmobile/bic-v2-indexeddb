@@ -2,13 +2,17 @@
 
 // foreign modules
 
-const test = require('tape');
+import { default as test } from 'tape';
 
 // local modules
 
-require('./tests/lib/bic');
+require('./lib/bic');
 
-const addon = require('./');
+require('./deferredify');
+require('./promise-reliable');
+require('./promise-resolved');
+
+import { default as addon } from '../';
 
 // this modules
 

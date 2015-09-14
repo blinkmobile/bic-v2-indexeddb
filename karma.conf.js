@@ -14,13 +14,10 @@ module.exports = function (config) {
     files: [
       'node_modules/jquery/dist/jquery.js',
       'node_modules/localforage/dist/localforage.js',
-      '**/*_test.js'
-    ],
-    exclude: [
-      'node_modules/**/*_test.js'
+      'tests/index.js'
     ],
     preprocessors: {
-      '**/*_test.js': ['webpack']
+      'tests/index.js': ['webpack']
     },
     webpack: {
       node: {
@@ -47,7 +44,7 @@ module.exports = function (config) {
       dir: 'coverage/'
     },
     colors: true,
-    logLevel: config.LOG_WARN,
+    logLevel: config.LOG_INFO,
     autoWatch: false,
     singleRun: true
   });
