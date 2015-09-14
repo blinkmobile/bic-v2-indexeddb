@@ -51,6 +51,7 @@
     "@blinkmobile/is-indexeddb-reliable": "1.0.1",
     "@jokeyrhyme/deadline": "1.1.1",
     "jquery": "2.1.4",
+    "localforage": "1.2.10",
     "weakmap": "0.0.6"
   }
 }
