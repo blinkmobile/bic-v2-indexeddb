@@ -11,7 +11,10 @@ module.exports = function (config) {
   config.set({
     basePath: '',
     frameworks: ['tap'],
-    files: ['tests/*.js'],
+    files: [
+      'node_modules/jquery/dist/jquery.js',
+      'tests/*.js'
+    ],
     preprocessors: {
       'tests/*.js': ['webpack']
     },

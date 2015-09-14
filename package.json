@@ -46,6 +46,8 @@
     "node": "^0.12"
   },
   "dependencies": {
+    "@blinkmobile/is-indexeddb-reliable": "1.0.1",
+    "jquery": "2.1.4",
     "weakmap": "0.0.6"
   }
 }
