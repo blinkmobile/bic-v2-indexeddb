@@ -72,15 +72,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	// this module
 
-	global.console.log('BMStorageIDB: starting...');
-
-	global.console.log('global.BlinkStorage: ' + !!global.BlinkStorage);
-	global.console.log('global.MyAnswers: ' + !!global.MyAnswers);
-
 	if (global.BlinkStorage) {
-	  _libBMStorageIDB2['default'].Upstream = global.BlinkStorage;
-	  // BMStorageIDB.prototype.available = global.BlinkStorage.prototype.available;
-	  global.BlinkStorage = _libBMStorageIDB2['default'];
+	  var detected = global.BlinkStorage.prototype.available;
+	  if (~detected.indexOf('localstorage') && ! ~detected.indexOf('websqldatabase')) {
+	    global.console.log('BMStorageIDB hijacking BlinkStorage...');
+
+	    _libBMStorageIDB2['default'].Upstream = global.BlinkStorage;
+	    // BMStorageIDB.prototype.available = global.BlinkStorage.prototype.available;
+	    global.BlinkStorage = _libBMStorageIDB2['default'];
+	  }
 	}
 
 	module.exports = {
