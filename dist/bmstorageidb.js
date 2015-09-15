@@ -1,1 +1,1052 @@
-!function(e,t){if("object"==typeof exports&&"object"==typeof module)module.exports=t();else if("function"==typeof define&&define.amd)define([],t);else{var n=t();for(var r in n)("object"==typeof exports?exports:e)[r]=n[r]}}(this,function(){return function(e){function t(r){if(n[r])return n[r].exports;var o=n[r]={exports:{},id:r,loaded:!1};return e[r].call(o.exports,o,o.exports,t),o.loaded=!0,o.exports}var n={};return t.m=e,t.c=n,t.p="",t(0)}([function(e,t,n){(function(t){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}var o=n(1),u=r(o);t.console.log("BMStorageIDB: starting..."),t.console.log("global.BlinkStorage: "+!!t.BlinkStorage),t.console.log("global.MyAnswers: "+!!t.MyAnswers),t.BlinkStorage&&(u["default"].Upstream=t.BlinkStorage,t.BlinkStorage=u["default"]),e.exports={BMStorageIDB:u["default"]}}).call(t,function(){return this}())},function(e,t,n){(function(r){"use strict";function o(e){return e&&e.__esModule?e:{"default":e}}function u(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function a(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(t,"__esModule",{value:!0});var i=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),c=function(e,t,n){for(var r=!0;r;){var o=e,u=t,a=n;i=l=c=void 0,r=!1,null===o&&(o=Function.prototype);var i=Object.getOwnPropertyDescriptor(o,u);if(void 0!==i){if("value"in i)return i.value;var c=i.get;return void 0===c?void 0:c.call(a)}var l=Object.getPrototypeOf(o);if(null===l)return void 0;e=l,t=u,n=a,r=!0}},l=n(2),s=o(l),f=n(3),p=o(f),d=n(4),v=o(d),y=n(5),g=o(y),h=n(11),m=o(h),b=r.WeakMap||s["default"],w=r.localforage,j=new b,k=function(e){function t(e){var n=arguments.length<=1||void 0===arguments[1]?"default":arguments[1],r=arguments.length<=2||void 0===arguments[2]?"main":arguments[2];u(this,t),c(Object.getPrototypeOf(t.prototype),"constructor",this).call(this,e,n,r);var o={type:e,partition:n,section:r};j.set(this,o)}return a(t,e),i(t,[{key:"ready",value:function(){var e=j.get(this);return g["default"].then(function(n){var r=e.type,o=e.partition,u=e.section;return n?(e.localforage=w.createInstance({driver:w.INDEXEDDB,name:o+":"+u,version:1}),m["default"]):(e.upstream=new t.Upstream(r,o,u),e.upstream.ready())})}},{key:"get",value:function(e){var n=j.get(this),r=n.localforage,o=n.upstream;return r?v["default"](r.getItem(e)):o?o.get(e):c(Object.getPrototypeOf(t.prototype),"get",this).call(this,e)}},{key:"set",value:function(e,n){var r=j.get(this),o=r.localforage,u=r.upstream;return o?v["default"](o.setItem(e,n)):u?u.set(e,n):c(Object.getPrototypeOf(t.prototype),"set",this).call(this,e,n)}},{key:"remove",value:function(e){var n=j.get(this),r=n.localforage,o=n.upstream;return r?v["default"](r.removeItem(e)):o?o.remove(e):c(Object.getPrototypeOf(t.prototype),"remove",this).call(this,e)}},{key:"keys",value:function(){var e=j.get(this),n=e.localforage,r=e.upstream;return n?v["default"](n.keys()):r?r.keys():c(Object.getPrototypeOf(t.prototype),"keys",this).call(this)}},{key:"count",value:function(){var e=j.get(this),n=e.localforage,r=e.upstream;return n?v["default"](n.length()):r?r.count():c(Object.getPrototypeOf(t.prototype),"count",this).call(this)}},{key:"removeKeysRegExp",value:function(e){var n=j.get(this),r=n.upstream;return t.Upstream?t.Upstream.prototype.removeKeysRegExp.call(this,e):r?r.removeKeysRegExp(e):c(Object.getPrototypeOf(t.prototype),"removeKeysRegExp",this).call(this,e)}}]),t}(p["default"]);t["default"]=k,e.exports=t["default"]}).call(t,function(){return this}())},function(e,t,n){"use strict";void function(t,n,r){function o(e,t,n){return"function"==typeof t&&(n=t,t=u(n).replace(/_$/,"")),c(e,t,{configurable:!0,writable:!0,value:n})}function u(e){return"function"!=typeof e?"":"name"in e?e.name:l.call(e).match(p)[1]}function a(e){function t(t,o){return o||2===arguments.length?n.set(t,o):(o=n.get(t),o===r&&(o=e(t),n.set(t,o))),o}var n=new v;return e||(e=y),t}var i=Object.getOwnPropertyNames,c=Object.defineProperty,l=Function.prototype.toString,s=Object.create,f=Object.prototype.hasOwnProperty,p=/^\n?function\s?(\w*)?_?\(/,d=function(){function e(){var e=a(),r={};this.unlock=function(o){var u=p(o);if(f.call(u,e))return u[e](r);var a=s(null,t);return c(u,e,{value:new Function("s","l",n)(r,a)}),a}}var t={value:{writable:!0,value:r}},n="return function(k){if(k===s)return l}",u=s(null),a=function(){for(var e=!0;e;){t=r,e=!1;var t=Math.random().toString(36).slice(2);if(!(t in u))return u[t]=t;e=!0}},l=a(),p=function(e){if(f.call(e,l))return e[l];if(!Object.isExtensible(e))throw new TypeError("Object must be extensible");var t=s(null);return c(e,l,{value:t}),t};return o(Object,function(e){var t=i(e);return f.call(e,l)&&t.splice(t.indexOf(l),1),t}),o(e.prototype,function(e){return this.unlock(e).value}),o(e.prototype,function(e,t){this.unlock(e).value=t}),e}(),v=function(e){function a(e){return this===t||null==this||this===a.prototype?new a(e):(v(this,new d),void g(this,e))}function i(e){p(e);var t=y(this).get(e);return t===n?r:t}function c(e,t){p(e),y(this).set(e,t===r?n:t)}function l(e){return p(e),y(this).get(e)!==r}function s(e){p(e);var t=y(this),n=t.get(e)!==r;return t.set(e,r),n}function f(){return y(this),"[object WeakMap]"}var p=function(e){if(null==e||"object"!=typeof e&&"function"!=typeof e)throw new TypeError("Invalid WeakMap key")},v=function(t,n){var r=e.unlock(t);if(r.value)throw new TypeError("Object is already a WeakMap");r.value=n},y=function(t){var n=e.unlock(t).value;if(!n)throw new TypeError("WeakMap is not generic");return n},g=function(e,t){null!==t&&"object"==typeof t&&"function"==typeof t.forEach&&t.forEach(function(n,r){n instanceof Array&&2===n.length&&c.call(e,t[r][0],t[r][1])})};try{var h=("return "+s).replace("e_","\\u0065"),m=new Function("unwrap","validate",h)(y,p)}catch(b){var m=s}var h=(""+Object).split("Object"),w=function(){return h[0]+u(this)+h[1]};o(w,w);var j={__proto__:[]}instanceof Array?function(e){e.__proto__=w}:function(e){o(e,w)};return j(a),[f,i,c,l,m].forEach(function(e){o(a.prototype,e),j(e)}),a}(new d),y=Object.create?function(){return Object.create(null)}:function(){return{}};e.exports=v,v.createStorage=a,t.WeakMap&&(t.WeakMap.createStorage=a)}((0,eval)("this"))},function(e,t){"use strict";function n(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(t,"__esModule",{value:!0});var r=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),o=function(){function e(t){var r=arguments.length<=1||void 0===arguments[1]?"default":arguments[1],o=arguments.length<=2||void 0===arguments[2]?"main":arguments[2];n(this,e),this.type=t,this.partition=r,this.section=o}return r(e,[{key:"ready",value:function(){throw new Error("BMStorage#ready() not implemented")}},{key:"get",value:function(){throw new Error("BMStorage#get() not implemented")}},{key:"set",value:function(){throw new Error("BMStorage#set() not implemented")}},{key:"remove",value:function(){throw new Error("BMStorage#remove() not implemented")}},{key:"keys",value:function(){throw new Error("BMStorage#keys() not implemented")}},{key:"count",value:function(){throw new Error("BMStorage#count() not implemented")}},{key:"removeKeysRegExp",value:function(){throw new Error("BMStorage#removeKeysRegExp() not implemented")}}]),e}();t["default"]=o,Object.defineProperties(o.prototype,{available:{value:[]}}),e.exports=t["default"]},function(e,t){(function(n){"use strict";function r(e){var t=new o.Deferred;return e.then(t.resolve,t.reject),t.promise()}Object.defineProperty(t,"__esModule",{value:!0}),t["default"]=r;var o=n.jQuery;e.exports=t["default"]}).call(t,function(){return this}())},function(e,t,n){(function(r){"use strict";function o(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var u=n(6),a=o(u),i=n(7),c=o(i),l=r.jQuery,s=new l.Deferred;a["default"].callback(function(e){c["default"].quick(function(t){e(null,t)})},3e3,function(e,t){e||!t?r.console&&r.console.warn&&r.console.warn("IndexedDB tests failed: avoiding IndexedDB"):r.console&&r.console.log&&r.console.log("IndexedDB tests passed"),s.resolve(!!t)}),t["default"]=s.promise(),e.exports=t["default"]}).call(t,function(){return this}())},function(e,t){"use strict";e.exports={fn:function(e,t){var n,r=function(){return n&&(clearTimeout(n),n=null),e.apply(this,arguments)};return n=setTimeout(r,t),r},promise:function(e,t){return new Promise(function(n,r){var o=!1,u=setTimeout(function(){o=!0,r(new Error(t+"ms deadline exceeded"))},t);e.then(function(){o||(clearTimeout(u),n.apply(e,arguments))},function(){o||(clearTimeout(u),r.apply(e,arguments))})})},callback:function(e,t,n){var r=!1,o=setTimeout(function(){r=!0,n(new Error(t+"ms deadline exceeded"))},t);e(function(e,t){r||(clearTimeout(o),n(e,t))})}}},function(e,t,n){(function(t){"use strict";function r(){var e,n=f+"-sync";if(a=t.indexedDB||t.mozIndexedDB||t.webkitIndexedDB||t.msIndexedDB,!a)return!1;if("deleteDatabase"in a)try{if(e=a.open(n,1),"onsuccess"in e&&"onupgradeneeded"in e)return e.onerror=function(){i(a,e.result,n)},e.onsuccess=function(){i(a,e.result,n)},!0}catch(r){return console.error(r),!r}return!1}function o(e){return r()?void l(a,function(t){return t?void c(e,!1):void c(e,!0)}):void c(e,!1)}function u(e){c(e,!1)}var a,i=n(8),c=n(9),l=n(10),s="isIndexedDBReliable",f=s+"-test";e.exports={sync:r,quick:o,thorough:u}}).call(t,function(){return this}())},function(e,t){"use strict";e.exports=function(e,t,n){try{t.close()}catch(r){}try{e.deleteDatabase(n)}catch(r){}}},function(e,t){(function(t){"use strict";e.exports=function(e,n){try{e(n)}catch(r){t.console&&t.console.error&&(t.console.error("error thrown during callback"),t.console.error(r))}}}).call(t,function(){return this}())},function(e,t,n){"use strict";function r(e,t){var n,r;try{n=e.transaction(["people","notes"],"readwrite")}catch(o){return void t(o)}n.onerror=function(e){t(e)},n.oncomplete=function(){t(null,null)};try{r=n.objectStore("people"),r.add({name:"Harry",created:(new Date).toString()}),r=n.objectStore("notes"),r.add({note:"blah",created:(new Date).toString()})}catch(o){t(o)}}function o(e,t,n,r,o){var u,a;try{u=e.transaction([t],"readonly"),a=u.objectStore(t).openCursor()}catch(i){return void o(i)}a.onerror=function(e){o(e)},a.onsuccess=function(){var e=a.result;return e?e.value&&e.value.created&&e.value[n]===r?void o(null,e.value):void e["continue"]():void o(new Error("test entry not found"),null)}}function u(e,t){o(e,"people","name","Harry",function(n){return n?void t(n):void o(e,"notes","note","blah",t)})}var a=n(8);e.exports=function(e,t){var n,o="idbTest-brokenBad-safari";try{n=e.open(o,1)}catch(i){return void t(i)}n.onerror=function(e){a(n.result,o),t(e)},n.onupgradeneeded=function(){var e;e=n.result,e.objectStoreNames.contains("people")||e.createObjectStore("people",{autoIncrement:!0}),e.objectStoreNames.contains("notes")||e.createObjectStore("notes",{autoIncrement:!0})},n.onsuccess=function(){r(n.result,function(e){return e?(a(n.result,o),void t(e)):void u(n.result,function(e){a(n.result,o),t(e)})})}}},function(e,t){(function(n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=n.jQuery,o=new r.Deferred;o.resolve(),t["default"]=o.promise(),e.exports=t["default"]}).call(t,function(){return this}())}])});
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else {
+		var a = factory();
+		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
+	}
+})(this, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			exports: {},
+/******/ 			id: moduleId,
+/******/ 			loaded: false
+/******/ 		};
+
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+
+
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
+
+	// local modules
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _libBMStorageIDB = __webpack_require__(1);
+
+	var _libBMStorageIDB2 = _interopRequireDefault(_libBMStorageIDB);
+
+	// this module
+
+	global.console.log('BMStorageIDB: starting...');
+
+	global.console.log('global.BlinkStorage: ' + !!global.BlinkStorage);
+	global.console.log('global.MyAnswers: ' + !!global.MyAnswers);
+
+	if (global.BlinkStorage) {
+	  _libBMStorageIDB2['default'].Upstream = global.BlinkStorage;
+	  // BMStorageIDB.prototype.available = global.BlinkStorage.prototype.available;
+	  global.BlinkStorage = _libBMStorageIDB2['default'];
+	}
+
+	module.exports = {
+	  BMStorageIDB: _libBMStorageIDB2['default']
+	};
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 1 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
+
+	// foreign modules
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x3, _x4, _x5) { var _again = true; _function: while (_again) { var object = _x3, property = _x4, receiver = _x5; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x3 = parent; _x4 = property; _x5 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _weakmap = __webpack_require__(2);
+
+	var _weakmap2 = _interopRequireDefault(_weakmap);
+
+	// local modules
+
+	var _BMStorage2 = __webpack_require__(3);
+
+	var _BMStorage3 = _interopRequireDefault(_BMStorage2);
+
+	var _deferredify = __webpack_require__(4);
+
+	var _deferredify2 = _interopRequireDefault(_deferredify);
+
+	var _promiseReliable = __webpack_require__(5);
+
+	var _promiseReliable2 = _interopRequireDefault(_promiseReliable);
+
+	var _promiseResolved = __webpack_require__(11);
+
+	var _promiseResolved2 = _interopRequireDefault(_promiseResolved);
+
+	// this module
+
+	var WeakMap = global.WeakMap || _weakmap2['default'];
+
+	var localForage = global.localforage;var privateMap = new WeakMap();
+
+	var BMStorageIDB = (function (_BMStorage) {
+	  _inherits(BMStorageIDB, _BMStorage);
+
+	  /**
+	  @param {string?} type - storage mechanism to use, `null` for auto
+	  @param {string} [partition=default] - WebSQL / IndexedDB database name
+	  @param {string} [section=main] - WebSQL table / IndexedDB object store name
+	  */
+
+	  function BMStorageIDB(type) {
+	    var partition = arguments.length <= 1 || arguments[1] === undefined ? 'default' : arguments[1];
+	    var section = arguments.length <= 2 || arguments[2] === undefined ? 'main' : arguments[2];
+
+	    _classCallCheck(this, BMStorageIDB);
+
+	    _get(Object.getPrototypeOf(BMStorageIDB.prototype), 'constructor', this).call(this, type, partition, section);
+
+	    var privates = { type: type, partition: partition, section: section };
+	    privateMap.set(this, privates);
+	  }
+
+	  _createClass(BMStorageIDB, [{
+	    key: 'ready',
+	    value: function ready() {
+	      var privates = privateMap.get(this);
+
+	      return _promiseReliable2['default'].then(function (result) {
+	        var type = privates.type;
+	        var partition = privates.partition;
+	        var section = privates.section;
+
+	        if (result) {
+	          privates.localforage = localForage.createInstance({
+	            driver: localForage.INDEXEDDB,
+	            name: partition + ':' + section,
+	            // storeName: section, // https://github.com/mozilla/localForage/issues/449
+	            version: 1.0
+	          });
+	          return _promiseResolved2['default'];
+	        }
+
+	        privates.upstream = new BMStorageIDB.Upstream(type, partition, section);
+	        return privates.upstream.ready();
+	      });
+	    }
+	  }, {
+	    key: 'get',
+	    value: function get(key) {
+	      var _privateMap$get = privateMap.get(this);
+
+	      var localforage = _privateMap$get.localforage;
+	      var upstream = _privateMap$get.upstream;
+
+	      if (localforage) {
+	        return (0, _deferredify2['default'])(localforage.getItem(key));
+	      }
+	      if (upstream) {
+	        return upstream.get(key);
+	      }
+	      return _get(Object.getPrototypeOf(BMStorageIDB.prototype), 'get', this).call(this, key);
+	    }
+	  }, {
+	    key: 'set',
+	    value: function set(key, value) {
+	      var _privateMap$get2 = privateMap.get(this);
+
+	      var localforage = _privateMap$get2.localforage;
+	      var upstream = _privateMap$get2.upstream;
+
+	      if (localforage) {
+	        return (0, _deferredify2['default'])(localforage.setItem(key, value));
+	      }
+	      if (upstream) {
+	        return upstream.set(key, value);
+	      }
+	      return _get(Object.getPrototypeOf(BMStorageIDB.prototype), 'set', this).call(this, key, value);
+	    }
+	  }, {
+	    key: 'remove',
+	    value: function remove(key) {
+	      var _privateMap$get3 = privateMap.get(this);
+
+	      var localforage = _privateMap$get3.localforage;
+	      var upstream = _privateMap$get3.upstream;
+
+	      if (localforage) {
+	        return (0, _deferredify2['default'])(localforage.removeItem(key));
+	      }
+	      if (upstream) {
+	        return upstream.remove(key);
+	      }
+	      return _get(Object.getPrototypeOf(BMStorageIDB.prototype), 'remove', this).call(this, key);
+	    }
+	  }, {
+	    key: 'keys',
+	    value: function keys() {
+	      var _privateMap$get4 = privateMap.get(this);
+
+	      var localforage = _privateMap$get4.localforage;
+	      var upstream = _privateMap$get4.upstream;
+
+	      if (localforage) {
+	        return (0, _deferredify2['default'])(localforage.keys());
+	      }
+	      if (upstream) {
+	        return upstream.keys();
+	      }
+	      return _get(Object.getPrototypeOf(BMStorageIDB.prototype), 'keys', this).call(this);
+	    }
+	  }, {
+	    key: 'count',
+	    value: function count() {
+	      var _privateMap$get5 = privateMap.get(this);
+
+	      var localforage = _privateMap$get5.localforage;
+	      var upstream = _privateMap$get5.upstream;
+
+	      if (localforage) {
+	        return (0, _deferredify2['default'])(localforage.length());
+	      }
+	      if (upstream) {
+	        return upstream.count();
+	      }
+	      return _get(Object.getPrototypeOf(BMStorageIDB.prototype), 'count', this).call(this);
+	    }
+	  }, {
+	    key: 'removeKeysRegExp',
+	    value: function removeKeysRegExp(regexp) {
+	      var _privateMap$get6 = privateMap.get(this);
+
+	      var upstream = _privateMap$get6.upstream;
+
+	      if (BMStorageIDB.Upstream) {
+	        return BMStorageIDB.Upstream.prototype.removeKeysRegExp.call(this, regexp);
+	      }
+	      if (upstream) {
+	        return upstream.removeKeysRegExp(regexp);
+	      }
+	      return _get(Object.getPrototypeOf(BMStorageIDB.prototype), 'removeKeysRegExp', this).call(this, regexp);
+	    }
+	  }]);
+
+	  return BMStorageIDB;
+	})(_BMStorage3['default']);
+
+	exports['default'] = BMStorageIDB;
+	module.exports = exports['default'];
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* (The MIT License)
+	 *
+	 * Copyright (c) 2012 Brandon Benvie <http://bbenvie.com>
+	 *
+	 * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+	 * associated documentation files (the 'Software'), to deal in the Software without restriction,
+	 * including without limitation the rights to use, copy, modify, merge, publish, distribute,
+	 * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+	 * furnished to do so, subject to the following conditions:
+	 *
+	 * The above copyright notice and this permission notice shall be included with all copies or
+	 * substantial portions of the Software.
+	 *
+	 * THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
+	 * BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+	 * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY  CLAIM,
+	 * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+	 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+	 */
+
+	// Original WeakMap implementation by Gozala @ https://gist.github.com/1269991
+	// Updated and bugfixed by Raynos @ https://gist.github.com/1638059
+	'use strict';
+
+	void (function (global, undefined_, undefined) {
+	  var getProps = Object.getOwnPropertyNames,
+	      defProp = Object.defineProperty,
+	      toSource = Function.prototype.toString,
+	      create = Object.create,
+	      hasOwn = Object.prototype.hasOwnProperty,
+	      funcName = /^\n?function\s?(\w*)?_?\(/;
+
+	  function define(object, key, value) {
+	    if (typeof key === 'function') {
+	      value = key;
+	      key = nameOf(value).replace(/_$/, '');
+	    }
+	    return defProp(object, key, { configurable: true, writable: true, value: value });
+	  }
+
+	  function nameOf(func) {
+	    return typeof func !== 'function' ? '' : 'name' in func ? func.name : toSource.call(func).match(funcName)[1];
+	  }
+
+	  // ############
+	  // ### Data ###
+	  // ############
+
+	  var Data = (function () {
+	    var dataDesc = { value: { writable: true, value: undefined } },
+	        datalock = 'return function(k){if(k===s)return l}',
+	        uids = create(null),
+	        createUID = function createUID() {
+	      var _again = true;
+
+	      _function: while (_again) {
+	        key = undefined;
+	        _again = false;
+
+	        var key = Math.random().toString(36).slice(2);
+	        if (key in uids) {
+	          _again = true;
+	          continue _function;
+	        } else {
+	          return uids[key] = key;
+	        }
+	      }
+	    },
+	        globalID = createUID(),
+	        storage = function storage(obj) {
+	      if (hasOwn.call(obj, globalID)) return obj[globalID];
+
+	      if (!Object.isExtensible(obj)) throw new TypeError("Object must be extensible");
+
+	      var store = create(null);
+	      defProp(obj, globalID, { value: store });
+	      return store;
+	    };
+
+	    // common per-object storage area made visible by patching getOwnPropertyNames'
+	    define(Object, function getOwnPropertyNames(obj) {
+	      var props = getProps(obj);
+	      if (hasOwn.call(obj, globalID)) props.splice(props.indexOf(globalID), 1);
+	      return props;
+	    });
+
+	    function Data() {
+	      var puid = createUID(),
+	          secret = {};
+
+	      this.unlock = function (obj) {
+	        var store = storage(obj);
+	        if (hasOwn.call(store, puid)) return store[puid](secret);
+
+	        var data = create(null, dataDesc);
+	        defProp(store, puid, {
+	          value: new Function('s', 'l', datalock)(secret, data)
+	        });
+	        return data;
+	      };
+	    }
+
+	    define(Data.prototype, function get(o) {
+	      return this.unlock(o).value;
+	    });
+	    define(Data.prototype, function set(o, v) {
+	      this.unlock(o).value = v;
+	    });
+
+	    return Data;
+	  })();
+
+	  var WM = (function (data) {
+	    var validate = function validate(key) {
+	      if (key == null || typeof key !== 'object' && typeof key !== 'function') throw new TypeError("Invalid WeakMap key");
+	    };
+
+	    var wrap = function wrap(collection, value) {
+	      var store = data.unlock(collection);
+	      if (store.value) throw new TypeError("Object is already a WeakMap");
+	      store.value = value;
+	    };
+
+	    var unwrap = function unwrap(collection) {
+	      var storage = data.unlock(collection).value;
+	      if (!storage) throw new TypeError("WeakMap is not generic");
+	      return storage;
+	    };
+
+	    var initialize = function initialize(weakmap, iterable) {
+	      if (iterable !== null && typeof iterable === 'object' && typeof iterable.forEach === 'function') {
+	        iterable.forEach(function (item, i) {
+	          if (item instanceof Array && item.length === 2) set.call(weakmap, iterable[i][0], iterable[i][1]);
+	        });
+	      }
+	    };
+
+	    function WeakMap(iterable) {
+	      if (this === global || this == null || this === WeakMap.prototype) return new WeakMap(iterable);
+
+	      wrap(this, new Data());
+	      initialize(this, iterable);
+	    }
+
+	    function get(key) {
+	      validate(key);
+	      var value = unwrap(this).get(key);
+	      return value === undefined_ ? undefined : value;
+	    }
+
+	    function set(key, value) {
+	      validate(key);
+	      // store a token for explicit undefined so that "has" works correctly
+	      unwrap(this).set(key, value === undefined ? undefined_ : value);
+	    }
+
+	    function has(key) {
+	      validate(key);
+	      return unwrap(this).get(key) !== undefined;
+	    }
+
+	    function delete_(key) {
+	      validate(key);
+	      var data = unwrap(this),
+	          had = data.get(key) !== undefined;
+	      data.set(key, undefined);
+	      return had;
+	    }
+
+	    function toString() {
+	      unwrap(this);
+	      return '[object WeakMap]';
+	    }
+
+	    try {
+	      var src = ('return ' + delete_).replace('e_', '\\u0065'),
+	          del = new Function('unwrap', 'validate', src)(unwrap, validate);
+	    } catch (e) {
+	      var del = delete_;
+	    }
+
+	    var src = ('' + Object).split('Object');
+	    var stringifier = function toString() {
+	      return src[0] + nameOf(this) + src[1];
+	    };
+
+	    define(stringifier, stringifier);
+
+	    var prep = { __proto__: [] } instanceof Array ? function (f) {
+	      f.__proto__ = stringifier;
+	    } : function (f) {
+	      define(f, stringifier);
+	    };
+
+	    prep(WeakMap);
+
+	    [toString, get, set, has, del].forEach(function (method) {
+	      define(WeakMap.prototype, method);
+	      prep(method);
+	    });
+
+	    return WeakMap;
+	  })(new Data());
+
+	  var defaultCreator = Object.create ? function () {
+	    return Object.create(null);
+	  } : function () {
+	    return {};
+	  };
+
+	  function createStorage(creator) {
+	    var weakmap = new WM();
+	    creator || (creator = defaultCreator);
+
+	    function storage(object, value) {
+	      if (value || arguments.length === 2) {
+	        weakmap.set(object, value);
+	      } else {
+	        value = weakmap.get(object);
+	        if (value === undefined) {
+	          value = creator(object);
+	          weakmap.set(object, value);
+	        }
+	      }
+	      return value;
+	    }
+
+	    return storage;
+	  }
+
+	  if (true) {
+	    module.exports = WM;
+	  } else if (typeof exports !== 'undefined') {
+	    exports.WeakMap = WM;
+	  } else if (!('WeakMap' in global)) {
+	    global.WeakMap = WM;
+	  }
+
+	  WM.createStorage = createStorage;
+	  if (global.WeakMap) global.WeakMap.createStorage = createStorage;
+	})((0, eval)('this'));
+	// Expanded by Benvie @ https://github.com/Benvie/harmony-collections
+
+/***/ },
+/* 3 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	var BMStorage = (function () {
+	  /**
+	  @param {string?} type - storage mechanism to use, `null` for auto
+	  @param {string} [partition=default] - WebSQL / IndexedDB database name
+	  @param {string} [section=main] - WebSQL table / IndexedDB object store name
+	  */
+
+	  function BMStorage(type) {
+	    var partition = arguments.length <= 1 || arguments[1] === undefined ? 'default' : arguments[1];
+	    var section = arguments.length <= 2 || arguments[2] === undefined ? 'main' : arguments[2];
+
+	    _classCallCheck(this, BMStorage);
+
+	    this.type = type;
+	    this.partition = partition;
+	    this.section = section;
+	  }
+
+	  _createClass(BMStorage, [{
+	    key: 'ready',
+	    value: function ready() {
+	      throw new Error('BMStorage#ready() not implemented');
+	    }
+	  }, {
+	    key: 'get',
+	    value: function get() {
+	      throw new Error('BMStorage#get() not implemented');
+	    }
+	  }, {
+	    key: 'set',
+	    value: function set() {
+	      throw new Error('BMStorage#set() not implemented');
+	    }
+	  }, {
+	    key: 'remove',
+	    value: function remove() {
+	      throw new Error('BMStorage#remove() not implemented');
+	    }
+	  }, {
+	    key: 'keys',
+	    value: function keys() {
+	      throw new Error('BMStorage#keys() not implemented');
+	    }
+	  }, {
+	    key: 'count',
+	    value: function count() {
+	      throw new Error('BMStorage#count() not implemented');
+	    }
+	  }, {
+	    key: 'removeKeysRegExp',
+	    value: function removeKeysRegExp() {
+	      throw new Error('BMStorage#removeKeysRegExp() not implemented');
+	    }
+	  }]);
+
+	  return BMStorage;
+	})();
+
+	exports['default'] = BMStorage;
+
+	Object.defineProperties(BMStorage.prototype, {
+	  available: {
+	    value: []
+	  }
+	});
+	module.exports = exports['default'];
+
+/***/ },
+/* 4 */
+/***/ function(module, exports) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
+
+	// foreign modules
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	exports['default'] = deferredify;
+	var $ = global.jQuery;
+
+	// this module
+
+	/**
+	@param {Promise} promise - a real native Promise
+	@returns {$.Deferred} jQuery implementation of a Promise
+	*/
+
+	function deferredify(promise) {
+	  var dfrd = new $.Deferred();
+	  promise.then(dfrd.resolve, dfrd.reject);
+	  return dfrd.promise();
+	}
+
+	module.exports = exports['default'];
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 5 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
+
+	// foreign modules
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _jokeyrhymeDeadline = __webpack_require__(6);
+
+	var _jokeyrhymeDeadline2 = _interopRequireDefault(_jokeyrhymeDeadline);
+
+	var _blinkmobileIsIndexeddbReliable = __webpack_require__(7);
+
+	var _blinkmobileIsIndexeddbReliable2 = _interopRequireDefault(_blinkmobileIsIndexeddbReliable);
+
+	var $ = global.jQuery;
+
+	// this module
+
+	var dfrd = new $.Deferred();
+
+	_jokeyrhymeDeadline2['default'].callback(function (done) {
+	  _blinkmobileIsIndexeddbReliable2['default'].quick(function (result) {
+	    done(null, result);
+	  });
+	}, 3000, function (err, result) {
+	  if (err || !result) {
+	    if (global.console && global.console.warn) {
+	      global.console.warn('IndexedDB tests failed: avoiding IndexedDB');
+	    }
+	  } else {
+	    if (global.console && global.console.log) {
+	      global.console.log('IndexedDB tests passed');
+	    }
+	  }
+	  dfrd.resolve(!!result);
+	});
+
+	exports['default'] = dfrd.promise();
+	module.exports = exports['default'];
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 6 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	module.exports = {
+
+	  /**
+	  @param {Function} fn to execute
+	  @param {Number} timeout milliseconds to wait
+	  @returns {Function} wrapped `fn`, called automatically per-timeout
+	  */
+	  fn: function fn(_fn, timeout) {
+	    var timer;
+	    var newFn = function newFn() {
+	      if (timer) {
+	        clearTimeout(timer);
+	        timer = null;
+	      }
+	      return _fn.apply(this, arguments);
+	    };
+	    timer = setTimeout(newFn, timeout);
+	    return newFn;
+	  },
+
+	  /**
+	  @param {Promise} promise to wait for
+	  @param {Number} timeout milliseconds to wait
+	  @returns {Promise} new Promise rejects when deadline exceeded
+	  */
+	  promise: function promise(_promise, timeout) {
+	    return new Promise(function (resolve, reject) {
+	      var isExceeded = false;
+
+	      var timer = setTimeout(function () {
+	        isExceeded = true;
+	        reject(new Error(timeout + 'ms deadline exceeded'));
+	      }, timeout);
+
+	      _promise.then(function () {
+	        // resolved
+	        if (!isExceeded) {
+	          clearTimeout(timer);
+	          resolve.apply(_promise, arguments);
+	        }
+	      }, function () {
+	        // rejected
+	        if (!isExceeded) {
+	          clearTimeout(timer);
+	          reject.apply(_promise, arguments);
+	        }
+	      });
+	    });
+	  },
+
+	  /**
+	  @callback ErrorFirstCallback
+	  @param {?Error} error or `null` (if no error)
+	  @param {...} optional, zero or more return data (if no error)
+	  */
+
+	  /**
+	  @callback FunctionTakingErrorFirstCallback
+	  @param {ErrorFirstCallback} called when done
+	  */
+
+	  /**
+	  @param {Function} fn to execute
+	  @param {Number} timeout milliseconds to wait
+	  @param {ErrorFirstCallback} callback called with timeout Error or results from fn
+	  */
+	  callback: function callback(fn, timeout, _callback) {
+	    var isExceeded = false;
+
+	    var timer = setTimeout(function () {
+	      isExceeded = true;
+	      _callback(new Error(timeout + 'ms deadline exceeded'));
+	    }, timeout);
+
+	    fn(function (err, data) {
+	      if (!isExceeded) {
+	        clearTimeout(timer);
+	        _callback(err, data);
+	      }
+	    });
+	  }
+
+	};
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
+
+	// our modules
+
+	var close = __webpack_require__(8);
+	var runCallback = __webpack_require__(9);
+	var runBrokenBadTest = __webpack_require__(10);
+
+	// this module
+
+	var UTIL_NAME = 'isIndexedDBReliable';
+	var DB_NAME = UTIL_NAME + '-test';
+
+	var api;
+
+	/**
+	 * @returns {Boolean} basic feature-detect result
+	 */
+	function sync() {
+	  var NAME = DB_NAME + '-sync';
+	  var req;
+	  api = global.indexedDB || global.mozIndexedDB || global.webkitIndexedDB || global.msIndexedDB;
+	  if (!api) {
+	    return false;
+	  }
+	  if ('deleteDatabase' in api) {
+	    try {
+	      req = api.open(NAME, 1);
+	      if ('onsuccess' in req && 'onupgradeneeded' in req) {
+	        req.onerror = function () {
+	          close(api, req.result, NAME);
+	        };
+	        req.onsuccess = function () {
+	          close(api, req.result, NAME);
+	        };
+	        return true;
+	      }
+	    } catch (err) {
+	      console.error(err);
+	      return !err;
+	    }
+	  }
+	  return false;
+	}
+
+	/**
+	 * @callback resultCallback
+	 * @param {Boolean} result of the feature-detect
+	 */
+
+	/**
+	 * @param {resultCallback} callback
+	 */
+	function quick(callback) {
+	  if (!sync()) {
+	    runCallback(callback, false);
+	    return;
+	  }
+
+	  runBrokenBadTest(api, function (err) {
+	    if (err) {
+	      runCallback(callback, false);
+	      return;
+	    }
+	    runCallback(callback, true);
+	  });
+	}
+
+	/**
+	 * @param {resultCallback} callback
+	 */
+	function thorough(callback) {
+	  runCallback(callback, false);
+	}
+
+	module.exports = {
+	  sync: sync,
+	  quick: quick,
+	  thorough: thorough
+	};
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 8 */
+/***/ function(module, exports) {
+
+	/*eslint-disable no-empty*/ // explicitly want noop catches
+
+	'use strict';
+
+	module.exports = function close(api, db, name) {
+	  try {
+	    db.close();
+	  } catch (ignore) {}
+
+	  try {
+	    api.deleteDatabase(name);
+	  } catch (ignore) {}
+	};
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
+
+	module.exports = function runCallback(callback, arg) {
+	  try {
+	    callback(arg);
+	  } catch (err) {
+	    if (global.console && global.console.error) {
+	      global.console.error('error thrown during callback');
+	      global.console.error(err);
+	    }
+	  }
+	};
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 10 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	// our modules
+
+	var close = __webpack_require__(8);
+
+	// this module
+
+	function runWrites(db, callback) {
+	  var tx, store;
+
+	  try {
+	    tx = db.transaction(['people', 'notes'], 'readwrite');
+	  } catch (err) {
+	    callback(err);
+	    return;
+	  }
+
+	  tx.onerror = function (err) {
+	    callback(err);
+	  };
+
+	  tx.oncomplete = function () {
+	    callback(null, null);
+	  };
+
+	  try {
+	    store = tx.objectStore('people');
+	    store.add({ name: 'Harry', created: new Date().toString() });
+
+	    store = tx.objectStore('notes');
+	    store.add({ note: 'blah', created: new Date().toString() });
+	  } catch (err) {
+	    callback(err);
+	  }
+	}
+
+	function findEntry(db, store, prop, value, callback) {
+	  var tx, req;
+
+	  try {
+	    tx = db.transaction([store], 'readonly');
+	    req = tx.objectStore(store).openCursor();
+	  } catch (err) {
+	    callback(err);
+	    return;
+	  }
+
+	  req.onerror = function (err) {
+	    callback(err);
+	  };
+
+	  req.onsuccess = function () {
+	    var cursor = req.result;
+	    if (cursor) {
+	      if (cursor.value && cursor.value.created && cursor.value[prop] === value) {
+	        callback(null, cursor.value);
+	        return;
+	      }
+	      cursor['continue']();
+	      return;
+	    }
+	    callback(new Error('test entry not found'), null);
+	  };
+	}
+
+	function runReads(db, callback) {
+	  findEntry(db, 'people', 'name', 'Harry', function (err) {
+	    if (err) {
+	      callback(err);
+	      return;
+	    }
+	    findEntry(db, 'notes', 'note', 'blah', callback);
+	  });
+	}
+
+	// http://www.raymondcamden.com/2014/09/25/IndexedDB-on-iOS-8-Broken-Bad
+	module.exports = function runBrokenBadTest(api, callback) {
+	  var BB_NAME = 'idbTest-brokenBad-safari';
+	  var req;
+
+	  try {
+	    req = api.open(BB_NAME, 1);
+	  } catch (err) {
+	    callback(err);
+	    return;
+	  }
+
+	  req.onerror = function (err) {
+	    close(req.result, BB_NAME);
+	    callback(err);
+	  };
+
+	  req.onupgradeneeded = function () {
+	    var db;
+	    db = req.result;
+	    if (!db.objectStoreNames.contains('people')) {
+	      db.createObjectStore('people', { autoIncrement: true });
+	    }
+	    if (!db.objectStoreNames.contains('notes')) {
+	      db.createObjectStore('notes', { autoIncrement: true });
+	    }
+	  };
+
+	  req.onsuccess = function () {
+	    runWrites(req.result, function (wErr) {
+	      if (wErr) {
+	        close(req.result, BB_NAME);
+	        callback(wErr);
+	        return;
+	      }
+	      runReads(req.result, function (rErr) {
+	        close(req.result, BB_NAME);
+	        callback(rErr);
+	      });
+	    });
+	  };
+	};
+
+/***/ },
+/* 11 */
+/***/ function(module, exports) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
+
+	// foreign modules
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	var $ = global.jQuery;
+
+	// this module
+
+	var dfrd = new $.Deferred();
+
+	dfrd.resolve();
+
+	exports['default'] = dfrd.promise();
+	module.exports = exports['default'];
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ }
+/******/ ])
+});
+;

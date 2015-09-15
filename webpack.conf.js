@@ -24,7 +24,7 @@ module.exports = {
     path: path.join(__dirname, 'dist')
   },
   plugins: [
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin()
+    new webpack.optimize.DedupePlugin() // ,
+    // new webpack.optimize.UglifyJsPlugin() // breaks IE 11
   ]
 };
