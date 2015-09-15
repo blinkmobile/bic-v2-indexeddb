@@ -55,7 +55,8 @@ test('BMStorageIDB#get(key)', (t) => {
     const dfrd = store.get('key');
     isPromise(t, dfrd);
     isNotDeferred(t, dfrd);
-    dfrd.then(() => {
+    dfrd.then((result) => {
+      t.notOk(result, 'no value for "key" yet');
       t.end();
     });
   } else {
@@ -72,6 +73,10 @@ test('BMStorageIDB#set(key, value)', (t) => {
     isPromise(t, dfrd);
     isNotDeferred(t, dfrd);
     dfrd.then(() => {
+      return store.get('key');
+    })
+    .then((result) => {
+      t.equal(result, 'value');
       t.end();
     });
   } else {
@@ -103,7 +108,23 @@ test('BMStorageIDB#keys()', (t) => {
     const dfrd = store.keys();
     isPromise(t, dfrd);
     isNotDeferred(t, dfrd);
-    dfrd.then(() => {
+    dfrd.then((result) => {
+      t.ok(Array.isArray(result));
+      t.equal(result.length, 0);
+
+      return store.set('keyA', 'value1');
+    })
+    .then(() => {
+      return store.set('keyB', 'value2');
+    })
+    .then(() => {
+      return store.keys();
+    })
+    .then((result) => {
+      t.ok(Array.isArray(result));
+      t.equal(result.length, 2);
+      t.ok(~result.indexOf('keyA'));
+      t.ok(~result.indexOf('keyB'));
       t.end();
     });
   } else {
@@ -119,7 +140,19 @@ test('BMStorageIDB#count()', (t) => {
     const dfrd = store.count();
     isPromise(t, dfrd);
     isNotDeferred(t, dfrd);
-    dfrd.then(() => {
+    dfrd.then((result) => {
+      t.equal(result, 2);
+
+      return store.remove('keyA');
+    })
+    .then(() => {
+      return store.remove('keyB');
+    })
+    .then(() => {
+      return store.count();
+    })
+    .then((result) => {
+      t.equal(result, 0);
       t.end();
     });
   } else {
