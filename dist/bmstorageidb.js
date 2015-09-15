@@ -149,19 +149,21 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    _get(Object.getPrototypeOf(BMStorageIDB.prototype), 'constructor', this).call(this, type, partition, section);
 
-	    var privates = { type: type, partition: partition, section: section };
+	    var privates = {};
 	    privateMap.set(this, privates);
 	  }
 
 	  _createClass(BMStorageIDB, [{
 	    key: 'ready',
 	    value: function ready() {
+	      var _this = this;
+
 	      var privates = privateMap.get(this);
 
 	      return _promiseReliable2['default'].then(function (result) {
-	        var type = privates.type;
-	        var partition = privates.partition;
-	        var section = privates.section;
+	        var type = _this.type;
+	        var partition = _this.partition;
+	        var section = _this.section;
 
 	        if (result) {
 	          privates.localforage = localForage.createInstance({
