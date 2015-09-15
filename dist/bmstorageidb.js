@@ -70,9 +70,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var detected = global.BlinkStorage.prototype.available;
 	  if (~detected.indexOf('localstorage') && ! ~detected.indexOf('websqldatabase')) {
 	    global.console.log('BMStorageIDB hijacking BlinkStorage...');
-
-	    _libBMStorageIDB2['default'].Upstream = global.BlinkStorage;
-	    // BMStorageIDB.prototype.available = global.BlinkStorage.prototype.available;
 	    global.BlinkStorage = _libBMStorageIDB2['default'];
 	  }
 	}
@@ -149,9 +146,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    _get(Object.getPrototypeOf(BMStorageIDB.prototype), 'constructor', this).call(this, type, partition, section);
 
-	    var privates = {};
-	    privateMap.set(this, privates);
+	    privateMap.set(this, {});
 	  }
+
+	  // preserve the old class, for internal use
 
 	  _createClass(BMStorageIDB, [{
 	    key: 'ready',
@@ -175,8 +173,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	          return _promiseResolved2['default'];
 	        }
 
-	        privates.upstream = new BMStorageIDB.Upstream(type, partition, section);
-	        return privates.upstream.ready();
+	        privates.blinkStorage = new BMStorageIDB.BlinkStorage(type, partition, section);
+	        return privates.blinkStorage.ready();
 	      });
 	    }
 	  }, {
@@ -185,13 +183,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var _privateMap$get = privateMap.get(this);
 
 	      var localforage = _privateMap$get.localforage;
-	      var upstream = _privateMap$get.upstream;
+	      var blinkStorage = _privateMap$get.blinkStorage;
 
 	      if (localforage) {
 	        return (0, _deferredify2['default'])(localforage.getItem(key));
 	      }
-	      if (upstream) {
-	        return upstream.get(key);
+	      if (blinkStorage) {
+	        return blinkStorage.get(key);
 	      }
 	      return _get(Object.getPrototypeOf(BMStorageIDB.prototype), 'get', this).call(this, key);
 	    }
@@ -201,13 +199,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var _privateMap$get2 = privateMap.get(this);
 
 	      var localforage = _privateMap$get2.localforage;
-	      var upstream = _privateMap$get2.upstream;
+	      var blinkStorage = _privateMap$get2.blinkStorage;
 
 	      if (localforage) {
 	        return (0, _deferredify2['default'])(localforage.setItem(key, value));
 	      }
-	      if (upstream) {
-	        return upstream.set(key, value);
+	      if (blinkStorage) {
+	        return blinkStorage.set(key, value);
 	      }
 	      return _get(Object.getPrototypeOf(BMStorageIDB.prototype), 'set', this).call(this, key, value);
 	    }
@@ -217,13 +215,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var _privateMap$get3 = privateMap.get(this);
 
 	      var localforage = _privateMap$get3.localforage;
-	      var upstream = _privateMap$get3.upstream;
+	      var blinkStorage = _privateMap$get3.blinkStorage;
 
 	      if (localforage) {
 	        return (0, _deferredify2['default'])(localforage.removeItem(key));
 	      }
-	      if (upstream) {
-	        return upstream.remove(key);
+	      if (blinkStorage) {
+	        return blinkStorage.remove(key);
 	      }
 	      return _get(Object.getPrototypeOf(BMStorageIDB.prototype), 'remove', this).call(this, key);
 	    }
@@ -233,13 +231,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var _privateMap$get4 = privateMap.get(this);
 
 	      var localforage = _privateMap$get4.localforage;
-	      var upstream = _privateMap$get4.upstream;
+	      var blinkStorage = _privateMap$get4.blinkStorage;
 
 	      if (localforage) {
 	        return (0, _deferredify2['default'])(localforage.keys());
 	      }
-	      if (upstream) {
-	        return upstream.keys();
+	      if (blinkStorage) {
+	        return blinkStorage.keys();
 	      }
 	      return _get(Object.getPrototypeOf(BMStorageIDB.prototype), 'keys', this).call(this);
 	    }
@@ -249,13 +247,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var _privateMap$get5 = privateMap.get(this);
 
 	      var localforage = _privateMap$get5.localforage;
-	      var upstream = _privateMap$get5.upstream;
+	      var blinkStorage = _privateMap$get5.blinkStorage;
 
 	      if (localforage) {
 	        return (0, _deferredify2['default'])(localforage.length());
 	      }
-	      if (upstream) {
-	        return upstream.count();
+	      if (blinkStorage) {
+	        return blinkStorage.count();
 	      }
 	      return _get(Object.getPrototypeOf(BMStorageIDB.prototype), 'count', this).call(this);
 	    }
@@ -264,13 +262,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: function removeKeysRegExp(regexp) {
 	      var _privateMap$get6 = privateMap.get(this);
 
-	      var upstream = _privateMap$get6.upstream;
+	      var blinkStorage = _privateMap$get6.blinkStorage;
 
-	      if (BMStorageIDB.Upstream) {
-	        return BMStorageIDB.Upstream.prototype.removeKeysRegExp.call(this, regexp);
+	      if (BMStorageIDB.BlinkStorage) {
+	        return BMStorageIDB.BlinkStorage.prototype.removeKeysRegExp.call(this, regexp);
 	      }
-	      if (upstream) {
-	        return upstream.removeKeysRegExp(regexp);
+	      if (blinkStorage) {
+	        return blinkStorage.removeKeysRegExp(regexp);
 	      }
 	      return _get(Object.getPrototypeOf(BMStorageIDB.prototype), 'removeKeysRegExp', this).call(this, regexp);
 	    }
@@ -280,6 +278,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	})(_BMStorage3['default']);
 
 	exports['default'] = BMStorageIDB;
+	if (global.BlinkStorage) {
+	  BMStorageIDB.BlinkStorage = global.BlinkStorage;
+	}
 	module.exports = exports['default'];
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
