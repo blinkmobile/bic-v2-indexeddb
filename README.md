@@ -62,6 +62,11 @@ they will no longer be able to access it.
 As such, we highly recommend that you inform end-users of this before deployment.
 That way, they may back-up / transfer / submit valuable data.
 
+### Un-minified Distribution
+
+We noticed a problem in Internet Explorer 11 when we tried to minify the code.
+We do not recommend minifying the code yourself unless you thoroughly test it.
+
 
 ## Development
 
