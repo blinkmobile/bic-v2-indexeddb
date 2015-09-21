@@ -31,20 +31,20 @@ Raw changes in the master branch may be unstable.
 
     - fail: console logs "IndexedDB tests failed: avoiding IndexedDB"
 
-1. if WebSQL is unavailable and `localStorage` is available,
-  replace the current `window.BlinkStorage` constructor with this new one,
-  otherwise stop now and do nothing further
+1. if WebSQL is available, stop now and do nothing further
+
+1. replace the current `window.BlinkStorage` constructor with this new one
 
     - we preserve the original constructor at `window.BMStorageIDB.BlinkStorage`
 
     - the console will log "BMStorageIDB hijacking BlinkStorage..."
 
-1. if we hijacked `BlinkStorage` and IndexedDB _passed_ our tests,
+1. if IndexedDB _passed_ our tests,
   then we use [localForage](http://mozilla.github.io/localForage/),
   with its IndexedDB driver,
   for all intercepted storage requests
 
-1. if we hijacked `BlinkStorage` and IndexedDB _failed_ our tests,
+1. if IndexedDB _failed_ our tests,
   then we use the original `BlinkStorage` for all intercepted storage requests
 
 
