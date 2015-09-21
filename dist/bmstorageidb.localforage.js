@@ -74,7 +74,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	if (global.BlinkStorage) {
 	  var detected = global.BlinkStorage.prototype.available;
-	  if (~detected.indexOf('localstorage') && ! ~detected.indexOf('websqldatabase')) {
+	  if (! ~detected.indexOf('websqldatabase')) {
 	    global.console.log('BMStorageIDB hijacking BlinkStorage...');
 	    global.BlinkStorage = _libBMStorageIDB2['default'];
 	  }

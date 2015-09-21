@@ -8,7 +8,7 @@ import BMStorageIDB from './lib/BMStorageIDB';
 
 if (global.BlinkStorage) {
   const detected = global.BlinkStorage.prototype.available;
-  if (~detected.indexOf('localstorage') && !~detected.indexOf('websqldatabase')) {
+  if (!~detected.indexOf('websqldatabase')) {
     global.console.log('BMStorageIDB hijacking BlinkStorage...');
     global.BlinkStorage = BMStorageIDB;
   }
